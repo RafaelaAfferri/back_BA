@@ -128,12 +128,12 @@ def gerar_relatorio():
             "atendimentos" : data["atendimentos"],
         }
 
-        output_pdf_path = os.path.abspath('relatorio.pdf')
+        output_pdf_path = os.path.abspath(f'{data["estudante"]}.pdf')
 
         context["logo_path"] = os.path.abspath('template/logo.png')
         generate_pdf(context, output_pdf_path)
 
-        return send_file(output_pdf_path, as_attachment=True, download_name='relatorio.pdf')
+        return send_file(output_pdf_path, as_attachment=True, download_name=f'{data["estudante"]}.pdf')
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)}), 500
